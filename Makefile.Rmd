@@ -1,0 +1,29 @@
+---
+title: "Makefile"
+output: html_document
+---
+
+Go out to Github for AustinLVB and source the SP500.R file in Github.
+```{r message=F}
+if("tseries" %in% rownames(installed.packages()) == FALSE){
+  install.packages("tseries", repos = structure(c(CRAN="http://cran.r-project.org")))
+}
+# Load package "tseries"
+require(tseries)
+## R Markdown
+url <- c("https://raw.githubusercontent.com/AustinLVB/SP500/master/SP500.R")
+source(url)
+
+```
+Output plotting that was in SP500 to the HTML file.
+
+```{r}
+plot(volest,type="l")
+
+# TODO: Add connected line segments for volest2 with the parameters: type="l",col="red"
+# hint: look at oilExerciseCode.R file at the live discussion
+lines(volest2, type="l",col="red")
+
+# TODO: Add connected line segments for volest3 with the parameters: type="l",col="blue"
+lines(volest3, type="l",col="red")
+```

@@ -8,13 +8,17 @@ library(tseries)
 
 # TODO: Download the data of SP500 '^gspc'.
 SNPdata <- get.hist.quote('^gspc',quote="Close")
+cat ("Downloaded file into SNPdata")
 
 # TODO: Calculate the log returns, which is the subtractration of log(lag(SNPdata)) and log(SNPdata)
 SNPret <- log(lag(SNPdata)) - log(SNPdata)
+cat ("Calculated the log returns. \n")
 
 # TODO: Calculate volatility measure that is to multiply sd(SNPret),sqrt(250), 100
 #SNPvol <- multiply(sd(SNPret),sqrt(250), 100)
 SNPvol <- (sd(SNPret)* sqrt(250))*100
+print(SNPvol) 
+cat ("is the volatility measure. \n")
 
 ## Define getVol function for volatility
 getVol <- function(d, logrets) {
@@ -37,11 +41,14 @@ getVol <- function(d, logrets) {
 # TODO: call getVol function with the parameters: 10,SNPret
 volest <- getVol(10,SNPret)
 
+
 # TODO: call getVol function with the parameters: 30,SNPret
 volest2 <- getVol (30,SNPret)
 
+
 # TODO: call getVol function with the parameters: 100,SNPret
 volest3 <- getVol(100,SNPret)
+
 
 # Plot the results, overlaying the volatility curves on the data, just as was done in the S&P example.
 #plot(volest,type="l")
