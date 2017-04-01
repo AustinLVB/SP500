@@ -1,24 +1,37 @@
 ---
-title: "Makefile"
+title: "Volatility - Makefile"
 output: html_document
 ---
 
-Go out to Github for AustinLVB and source the SP500.R file in Github.
-Before we start, we make sure all packages needed for the project are installed.
-```{r dependencies, message=F}
-needed_packages = c('tseries', 'knitr')
-needed_package <- length(needed_packages)
+# Makefile
+Laura Bishop<br/>
+6303-404 Doing Data Science<br/>
+# This is Homework 11 - Volatility Makefile.<br/>
+This file is the controller for running the SP500.R code and generating an HTML from the Calc_Plot.Rmd. <br/>
 
+
+## Dependencies
+Before we start, we make sure all packages needed for the project are installed.
+
+```r
+needed_packages = c('tseries', 'downloader', 'knitr')
 for (needed_package in needed_packages) {
   if(needed_package %in% rownames(installed.packages()) == FALSE) {
     install.packages(needed_package, repos = structure(c(CRAN = "http://cran.r-project.org")))
   }
 }
-require (tseries)
+require(tseries)
+require(downloader)
 require(knitr)
-url <- c("https://raw.githubusercontent.com/AustinLVB/SP500/master/SP500.R")
-source(url)
+cat ("tseries & downloader & knitr found and available for use.\n")
+
+url_dir <- c("https://raw.githubusercontent.com/AustinLVB/Week11-Hmrk---LVB/master")
+setwd(url_dir)
+getwd()
+
+CalcPlotRMD <- c("https://raw.githubusercontent.com/AustinLVB/Week11-Hmrk---LVB/master/Calc_Plot.Rmd")
+CalcPlotRMD
 
 
-```
+knit (CalcPlotRMD)
 ```

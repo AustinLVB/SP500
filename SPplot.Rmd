@@ -3,12 +3,8 @@ title: "S&P Plot"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
 ```{r dependencies, message=F}
-needed_packages = c('tseries', 'knitr')
+needed_packages = c('tseries')
 needed_package <- length(needed_packages)
 
 for (needed_package in needed_packages) {
@@ -20,14 +16,13 @@ require (tseries)
 require(knitr)
 url <- c("https://raw.githubusercontent.com/AustinLVB/SP500/master/SP500.R")
 source(url)
+
+jpeg("SPplot.jpg")
 plot(volest,type="l")
-
-# TODO: Add connected line segments for volest2 with the parameters: type="l",col="red"
-# hint: look at oilExerciseCode.R file at the live discussion
 lines(volest2, type="l",col="red")
-
-# TODO: Add connected line segments for volest3 with the parameters: type="l",col="blue"
-lines(volest3, type="l",col="blue")
+lines(volest3, type="l",col="yellow")
+dev.off()
+cat ("Finished with knitting. Go to SPplot.jpg to see the diagram.")
 ```
 
 
